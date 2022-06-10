@@ -7,6 +7,7 @@ import {
   Image, 
   Text,
   Pressable,
+  Linking
 } from 'react-native';
 // import { Colors } from 'react-native/Libraries/NewAppScreen';
 
@@ -14,8 +15,17 @@ const colorGitHub = "#010409";
 const imageGithub = 'https://avatars.githubusercontent.com/u/38915329?v=4';
 const colorFontGitHub = '#C9D1D9'
 const colorDarkFontGitHub = '#4F565E'
+const urltoMyGithub = 'https://github.com/Pedrohaf'
 
 export default function App() {
+
+  const handloPressGoToGithub = async () =>{
+      const res = await Linking.canOpenURL(urltoMyGithub);
+      if (res){
+        await Linking.openURL(urltoMyGithub);
+      }
+  }
+
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar  backgroundColor={colorGitHub} barStyle='light-content' />
@@ -28,7 +38,7 @@ export default function App() {
         Técnico Redes de Computadores (2016) </Text>
       </View>
 
-      <Pressable onPress={() => console.log("GitHub")}>
+      <Pressable onPress={handloPressGoToGithub}>
         <View>
           <Text style={[styles.Button, styles.defaultText, styles.textButton]}> 
             Open in GitHub
